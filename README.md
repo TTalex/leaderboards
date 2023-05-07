@@ -20,7 +20,7 @@ SDK functions can be imported in a module:
 They are also exposed gobally under the `LeaderboardsSdk` name
 
 ```
-<script src="http://localhost:3000/sdk.js" type="module"></script>
+<script async src="http://localhost:3000/sdk.js" type="module"></script>
 <script>
     console.log(LeaderboardsSdk.getId())
     LeaderboardsSdk.storeScore(("testGame", "gameCategory", 1)
@@ -32,7 +32,7 @@ The repo also includes a frontend: `changename.html` with a simple form for play
 
 Link to this page is added to games, for example, here's a link in React with a dynamic style
 ```
-    <a href="http://localhost:3000" target='_blank' rel="noreferrer" alt="login" style={{color: "transparent", textShadow:  LeaderboardsSdk.getId() ? "0 0 0 hsl(171, 100%, 41%)" : "0 0 0 lightgray"}}>👤</a>
+    <a href="http://localhost:3000/changename.html" target='_blank' rel="noreferrer" alt="login" style={{color: "transparent", textShadow:  LeaderboardsSdk.getId() ? "0 0 0 hsl(171, 100%, 41%)" : "0 0 0 lightgray"}}>👤</a>
 ```
 
 It is planned to add a proper frontend to display full leaderboards at some point.
