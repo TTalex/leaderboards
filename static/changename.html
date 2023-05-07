@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Votre nom sur le classement</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>
+    <body>
+        <div class="main">
+            <section class="section">
+                <div class="container">
+                    <h1 class="title">Votre nom sur le classement</h1>
+                    <p class="subtitle">
+                        Cette page vous permet de configurer votre nom sur l'ensemble des applications d'Alex. 
+                        Une fois votre nom enregistré, votre navigateur le garde en mémoire et vos scores et participations sont automatiquement enregistrés. 
+                        Si vous souhaitez ne plus être suivi, vous pouvez cliquer sur le bouton "Réinitialiser mon nom". 
+                    </p>
+                    <div id="notif" class="notification is-success" style="display: none;">
+                        
+                    </div>
+                    <form class="block">
+                        <div class="field">
+                            <label class="label">Nom</label>
+                            <div class="control">
+                                <input id="nameInput" class="input" type="text" placeholder="Votre nom">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input id="submit" type="submit" class="button is-link" value="Enregistrer"></input>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="block">
+                        <div class="control">
+                            <button id="clear" class="button is-danger">Réinitialiser mon nom</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script type="module">
+            import {getId, setId} from './sdk.js'
+            let playerId = getId()
+            if (playerId) {
+                document.getElementById("nameInput").value = playerId
+                document.getElementById("submit").value = "Changer de nom"
+            }
+            function savePlayerId(e) {
+                e.preventDefault()
+                setId(document.getElementById("nameInput").value)
+                document.getElementById("submit").value = "Changer de nom"
+                document.getElementById("notif").style = "display: block"
+                document.getElementById("notif").innerHTML = "Le nom " + document.getElementById("nameInput").value + " a bien été pris en compte, vous pouvez fermer cette page et retourner sur l'application initiale."
+                return false
+            }
+            function clearPlayerId() {
+                setId(false)
+                document.getElementById("nameInput").value = ""
+                document.getElementById("submit").value = "Enregistrer"
+                document.getElementById("notif").style = "display: block"
+                document.getElementById("notif").innerHTML = "Votre nom a bien été réinitialisé, vous pouvez fermer cette page et retourner sur l'application initiale."
+            }
+            document.getElementsByTagName("form")[0].addEventListener("submit", savePlayerId)
+            document.getElementById("clear").addEventListener("click", clearPlayerId)
+        </script>
+    </body>
+</html>

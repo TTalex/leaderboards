@@ -1,0 +1,14 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <script type="module">
+            import {getId, setId, storeScore} from 'http://localhost:3000/sdk.js'
+            const playerId = getId()
+            if (!playerId)
+                setId("Alex")
+            storeScore("testGame", "gamePlayed", 1).then((err) => console.log(err))
+        </script>
+    </body>
+</html>
